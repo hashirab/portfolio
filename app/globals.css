@@ -1,0 +1,287 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #07090a;
+  color: #dcece2;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ambient background glow */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(1200px 600px at 15% -10%, rgba(255, 180, 84, 0.06), transparent 60%),
+    radial-gradient(1000px 700px at 100% 110%, rgba(127, 219, 202, 0.05), transparent 60%),
+    linear-gradient(#07090a, #07090a);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* scanline texture */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.012) 0px,
+    rgba(255, 255, 255, 0.012) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  z-index: 3;
+}
+
+.content-scroll::-webkit-scrollbar {
+  width: 9px;
+}
+.content-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.content-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(255, 180, 84, 0.55), rgba(127, 219, 202, 0.55));
+  border-radius: 5px;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ---------- futuristic layer additions ---------- */
+
+@keyframes gridDrift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 48px 48px;
+  }
+}
+
+.circuit-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(127, 219, 202, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127, 219, 202, 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: gridDrift 14s linear infinite;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 40%, transparent 90%);
+}
+
+/* cinematic edge vignette — pulls focus toward center content. Negative
+   z-index keeps it behind the (non-positioned) UI chrome instead of over it. */
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 90% 90% at 50% 45%, transparent 65%, rgba(3, 4, 4, 0.4) 100%);
+}
+
+@keyframes orbFloat {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, -20px) scale(1.08);
+  }
+}
+
+.glow-orb {
+  position: fixed;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+  animation: orbFloat 10s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 180, 84, 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(255, 180, 84, 0);
+  }
+}
+.pulse-dot {
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDotCyan {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(127, 219, 202, 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(127, 219, 202, 0);
+  }
+}
+.pulse-dot-cyan {
+  animation: pulseDotCyan 2s ease-in-out infinite;
+}
+
+.text-glow {
+  text-shadow: 0 0 12px rgba(255, 180, 84, 0.35);
+}
+.text-glow-cyan {
+  text-shadow: 0 0 12px rgba(127, 219, 202, 0.4);
+}
+
+/* glass HUD panel — replaces flat card backgrounds site-wide */
+.glass-card {
+  position: relative;
+  background: linear-gradient(165deg, rgba(20, 25, 21, 0.75), rgba(10, 13, 11, 0.85));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(127, 219, 202, 0.12);
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.02) inset, 0 10px 28px -16px rgba(0, 0, 0, 0.7);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+.glass-card:hover {
+  border-color: rgba(127, 219, 202, 0.4);
+  box-shadow: 0 0 0 1px rgba(127, 219, 202, 0.12), 0 0 32px -8px rgba(127, 219, 202, 0.3),
+    0 14px 32px -16px rgba(0, 0, 0, 0.8);
+  transform: translateY(-2px);
+}
+
+/* static glass panel — same look as glass-card, no hover lift (forms, widgets) */
+.glass-panel {
+  position: relative;
+  background: linear-gradient(165deg, rgba(20, 25, 21, 0.78), rgba(6, 7, 6, 0.92));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(127, 219, 202, 0.14);
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.02) inset, 0 10px 28px -16px rgba(0, 0, 0, 0.7);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.glass-panel:focus-within {
+  border-color: rgba(127, 219, 202, 0.45);
+  box-shadow: 0 0 0 1px rgba(127, 219, 202, 0.12), 0 0 28px -10px rgba(127, 219, 202, 0.35);
+}
+
+/* neon call-to-action buttons */
+.btn-neon-amber {
+  background: linear-gradient(135deg, #ffc474, #ffa23c);
+  box-shadow: 0 0 0 1px rgba(255, 180, 84, 0.4), 0 6px 24px -8px rgba(255, 180, 84, 0.55);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+}
+.btn-neon-amber:hover {
+  box-shadow: 0 0 0 1px rgba(255, 180, 84, 0.65), 0 8px 32px -6px rgba(255, 180, 84, 0.8);
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.btn-neon-cyan {
+  transition: box-shadow 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-neon-cyan:hover {
+  box-shadow: 0 0 24px -4px rgba(127, 219, 202, 0.5);
+  transform: translateY(-1px);
+}
+
+/* small gradient accent under section headers */
+.section-heading {
+  position: relative;
+  display: inline-block;
+}
+.section-heading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -11px;
+  width: 42px;
+  height: 2px;
+  background: linear-gradient(90deg, #ffb454, rgba(127, 219, 202, 0.6));
+  box-shadow: 0 0 8px rgba(255, 180, 84, 0.55);
+  border-radius: 2px;
+}
+
+.card-glow {
+  position: relative;
+}
+.card-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg, transparent, rgba(127, 219, 202, 0.5), transparent);
+  background-size: 250% 250%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.card-glow:hover::before {
+  opacity: 1;
+  animation: sheen 2.2s linear infinite;
+}
+@keyframes sheen {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 250% 250%;
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.page-transition {
+  animation: fadeSlideIn 0.35s ease both;
+}
+
+@keyframes bootFade {
+  0% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.boot-overlay {
+  animation: bootFade 1.6s ease forwards;
+}
