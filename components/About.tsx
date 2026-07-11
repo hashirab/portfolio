@@ -2,7 +2,7 @@ import { profile } from "@/data/profile";
 
 export default function About() {
   return (
-    <section className="min-h-[calc(100vh-96px)] flex flex-col justify-center py-[70px]">
+    <section id="about" className="min-h-[calc(100vh-96px)] flex flex-col justify-center py-[70px]">
       <h2 className="section-heading text-[12.5px] uppercase tracking-[2.5px] text-dim font-semibold mb-[38px] before:content-['//_'] before:text-dimmer">
         cat profile.json
       </h2>

@@ -2,7 +2,7 @@ import { profile } from "@/data/profile";
 
 export default function Experience() {
   return (
-    <section className="min-h-[calc(100vh-96px)] flex flex-col justify-center py-[70px]">
+    <section id="experience" className="min-h-[calc(100vh-96px)] flex flex-col justify-center py-[70px]">
       <h2 className="text-[12.5px] uppercase tracking-[2.5px] text-dim font-semibold mb-[26px] before:content-['//_'] before:text-dimmer">
         tail -f experience.log
       </h2>

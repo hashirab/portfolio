@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { profile } from "@/data/profile";
 
 export default function Hero() {
@@ -31,7 +30,7 @@ export default function Hero() {
 
   return (
     <section
-      id="hero"
+      id="home"
       className="min-h-[calc(100vh-96px)] flex flex-col justify-center py-[70px]"
     >
       <div className="flex items-center gap-2 text-dim text-[11px] uppercase tracking-[2px] mb-5">
@@ -55,12 +54,12 @@ export default function Hero() {
       </div>
 
       <div className="flex items-center gap-4 flex-wrap mt-8 text-[13px]">
-        <Link
-          href="/projects"
+        <a
+          href="#projects"
           className="btn-neon-amber px-5 py-[10px] rounded-[3px] text-bg font-semibold tracking-wide"
         >
           view work
-        </Link>
+        </a>
         <a
           href="#chat"
           className="btn-neon-cyan px-5 py-[10px] rounded-[3px] border border-cyanDim text-cyan hover:bg-cyan/[0.08]"

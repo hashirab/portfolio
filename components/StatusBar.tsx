@@ -1,11 +1,11 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { buffers } from "@/data/profile";
+import { useActiveSection } from "@/hooks/useActiveSection";
 
 export default function StatusBar() {
-  const pathname = usePathname();
-  const active = buffers.find((b) => b.href === pathname) ?? buffers[0];
+  const activeId = useActiveSection();
+  const active = buffers.find((b) => b.id === activeId) ?? buffers[0];
 
   return (
     <div className="flex items-center gap-4 bg-panel2/90 backdrop-blur-sm px-5 py-1.5 text-[11.5px] text-dimmer shadow-[0_-1px_0_0_rgba(255,180,84,0.16),0_-6px_20px_-14px_rgba(255,180,84,0.4)]">

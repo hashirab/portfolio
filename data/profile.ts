@@ -155,10 +155,10 @@ export const profile = {
 };
 
 export const buffers = [
-  { id: "home", n: 1, file: "home.md", href: "/" },
-  { id: "about", n: 2, file: "profile.json", href: "/about" },
-  { id: "experience", n: 3, file: "experience.log", href: "/experience" },
-  { id: "projects", n: 4, file: "projects/", href: "/projects" },
-  { id: "skills", n: 5, file: "stack.txt", href: "/skills" },
-  { id: "links", n: 6, file: "links.txt", href: "/links" },
+  { id: "home", n: 1, file: "home.md" },
+  { id: "about", n: 2, file: "profile.json" },
+  { id: "experience", n: 3, file: "experience.log" },
+  { id: "projects", n: 4, file: "projects/" },
+  { id: "skills", n: 5, file: "stack.txt" },
+  { id: "links", n: 6, file: "links.txt" },
 ] as const;

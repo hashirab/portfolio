@@ -68,7 +68,7 @@ function RowIcon({ type }: { type: IconType }) {
 
 export default function Links() {
   return (
-    <section className="min-h-[calc(100vh-96px)] flex flex-col justify-center py-[70px]">
+    <section id="links" className="min-h-[calc(100vh-96px)] flex flex-col justify-center py-[70px]">
       <h2 className="section-heading text-[12.5px] uppercase tracking-[2.5px] text-dim font-semibold mb-[38px] before:content-['//_'] before:text-dimmer">
         cat links.txt
       </h2>

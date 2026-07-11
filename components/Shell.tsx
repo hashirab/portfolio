@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import TitleBar from "@/components/TitleBar";
 import Rail from "@/components/Rail";
 import StatusBar from "@/components/StatusBar";
@@ -13,7 +12,6 @@ const BOOT_LINES = [
 ];
 
 export default function Shell({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
   const [booting, setBooting] = useState(true);
   const [bootStep, setBootStep] = useState(0);
 
@@ -65,7 +63,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       <div className="flex-1 flex min-h-0">
         <Rail />
         <div className="flex-1 overflow-y-auto scroll-smooth content-scroll">
-          <div key={pathname} className="page-transition max-w-[820px] mx-auto px-6 md:px-10">
+          <div className="page-transition max-w-[820px] mx-auto px-6 md:px-10">
             {children}
           </div>
         </div>

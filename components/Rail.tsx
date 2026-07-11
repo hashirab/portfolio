@@ -1,11 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { buffers } from "@/data/profile";
+import { useActiveSection } from "@/hooks/useActiveSection";
 
 export default function Rail() {
-  const pathname = usePathname();
+  const active = useActiveSection();
 
   return (
     <nav className="hidden md:flex flex-col gap-0.5 w-[180px] shrink-0 bg-panel2/90 backdrop-blur-sm border-r border-border py-[22px] shadow-[1px_0_0_0_rgba(127,219,202,0.08)]">
@@ -13,24 +12,24 @@ export default function Rail() {
         buffers
       </div>
       {buffers.map((b) => {
-        const active = pathname === b.href;
+        const isActive = active === b.id;
         return (
-          <Link
+          <a
             key={b.id}
-            href={b.href}
+            href={`#${b.id}`}
             className={`flex items-center gap-2.5 px-5 py-[9px] text-[13px] border-l-2 transition-all duration-200 ${
-              active
+              isActive
                 ? "text-amber border-amber bg-gradient-to-r from-amber/[0.1] to-transparent text-glow shadow-[inset_2px_0_8px_-2px_rgba(255,180,84,0.3)]"
                 : "text-dim border-transparent hover:text-text hover:bg-white/[0.02]"
             }`}
           >
-            {active ? (
+            {isActive ? (
               <span className="w-[6px] h-[6px] rounded-full bg-amber pulse-dot" />
             ) : (
               <span className="text-dimmer text-[11.5px]">{b.n}</span>
             )}
             {b.file}
-          </Link>
+          </a>
         );
       })}
     </nav>
