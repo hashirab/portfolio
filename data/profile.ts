@@ -88,7 +88,7 @@ export const profile = {
         "Booking, waiver, and payment in one flow",
         "In progress — building under Hashrem",
       ],
-      links: [],
+      links: [{ label: "source", href: "https://github.com/hashirab/waivervault" }],
     },
   ],
   skills: [
