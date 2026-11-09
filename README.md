@@ -14,8 +14,8 @@ npm run dev
 
 Open http://localhost:3000
 
-The AI assistant on the home page (`/api/chat`) calls the Groq API (Llama 3.3
-70B). Without `GROQ_API_KEY` set, the widget stays up but replies with a
+The AI assistant on the home page (`/api/chat`) calls the Groq API
+(openai/gpt-oss-120b). Without `GROQ_API_KEY` set, the widget stays up but replies with a
 friendly "not configured yet" message instead of erroring. Get a free key at
 https://console.groq.com.
 

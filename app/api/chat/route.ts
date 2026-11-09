@@ -2,7 +2,7 @@ import Groq from "groq-sdk";
 import { NextRequest, NextResponse } from "next/server";
 import { profile } from "@/data/profile";
 
-const MODEL = "llama-3.3-70b-versatile";
+const MODEL = "openai/gpt-oss-120b";
 const MAX_MESSAGES = 10;
 const MAX_MESSAGE_LENGTH = 500;
 
